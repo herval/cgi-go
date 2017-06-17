@@ -64,8 +64,12 @@ func main() {
 		fmt.Println("Using embedded resources")
 		http.HandleFunc("/", prodHandler)
 	}
-	http.ListenAndServe(":8080", nil)
-	fmt.Println("Server running on port 8080")
+
+	fmt.Println("Starting server on port 8080")
+	err := http.ListenAndServe(":8080", nil)
+
+	// err is always non-nil
+	fmt.Printf("Error on http listener: %s\n", err)
 }
 
 func resourceExists(name string) bool {
